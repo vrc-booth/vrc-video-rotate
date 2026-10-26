@@ -21,3 +21,17 @@ pnpm run test
 - 화면을 바꾸면 [docs/design.md](docs/design.md)를 따르고, 규칙이 바뀌면 문서를 함께 고친다.
 - 문구를 더하면 다섯 사전을 함께 고치고 `pnpm run test`로 키를 확인한다.
 - `src/lib/rotate.js`를 바꾸면 `pnpm run test`와 함께 실제 MP4로 결과를 확인한다(`ffprobe -show_entries stream_side_data=rotation`).
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues of the repo vrc-booth/vrc-video-rotate. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five default labels, each named after its role. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
