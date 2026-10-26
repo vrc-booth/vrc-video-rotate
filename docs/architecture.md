@@ -33,3 +33,9 @@
 - 화면 코드는 색 값을 직접 쓰지 않고 [design.md](design.md#색)의 변수를 쓴다.
 - 사용자에게 보이는 문구는 사전에 둔다([i18n.md](i18n.md)).
 - 서버, 업로드, 분석 도구를 넣지 않는다. 모든 처리는 브라우저 안에서 끝난다.
+
+## 배포
+
+- `main`에 푸시하면 `.github/workflows/deploy.yml`이 테스트와 빌드를 거쳐 GitHub Pages(https://vrc-booth.github.io/vrc-video-rotate/)에 올린다.
+- 사이트가 하위 경로에 있으므로 `vite.config.js`의 `base`는 `/vrc-video-rotate/`다. 저장소 이름을 바꾸면 함께 고친다.
+- CI의 pnpm 버전은 `package.json`의 `packageManager`를 따른다.
