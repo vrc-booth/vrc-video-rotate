@@ -1,0 +1,16 @@
+export const ja = {
+  languageName: '日本語',
+  appTitle: 'VRChat 動画回転',
+  language: '言語',
+  openVideo: '動画を開く',
+  dropHint: 'ここに MP4・MOV ファイルをドロップ',
+  privacyNote: '処理はすべてブラウザ内で行われ、何もアップロードされません。回転情報だけを変更するため、画質は変わりません。',
+  rotateLeft: '左に回転',
+  rotateRight: '右に回転',
+  rotation_0: '元の向き',
+  rotation_90: '時計回りに 90°',
+  rotation_180: '180°',
+  rotation_270: '反時計回りに 90°',
+  save: '保存',
+  loadFailed: '{name} を開けません。MP4・MOV ファイルか確認してください。',
+};

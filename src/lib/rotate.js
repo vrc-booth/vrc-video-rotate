@@ -13,7 +13,7 @@ function* boxes(view, start, end) {
     } else if (size === 0) {
       size = end - start;
     }
-    if (size < header || start + size > end) throw new Error('손상된 MP4 박스 구조입니다.');
+    if (size < header || start + size > end) throw new Error('Malformed MP4 box');
     yield { type: fourcc(view, start + 4), body: start + header, end: start + size };
     start += size;
   }
@@ -32,7 +32,7 @@ async function findMoov(file) {
     if (size < 8) break;
     pos += size;
   }
-  throw new Error('MP4/MOV 파일이 아니거나 moov 박스를 찾지 못했습니다.');
+  throw new Error('No moov box: not an MP4/MOV file');
 }
 
 // [a, b, c, d, tx, ty] in 16.16 fixed point; w, h are tkhd width/height (also 16.16).
@@ -67,7 +67,7 @@ export async function rotateMp4(file, degrees) {
     [a, b, 0, c, d, 0, tx, ty, 0x40000000].forEach((v, i) => view.setInt32(at + i * 4, v));
     videoTracks++;
   }
-  if (!videoTracks) throw new Error('영상 트랙을 찾지 못했습니다.');
+  if (!videoTracks) throw new Error('No video track');
 
   return new Blob([file.slice(0, moovStart), moov, file.slice(moovEnd)], { type: file.type || 'video/mp4' });
 }

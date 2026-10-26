@@ -1,0 +1,16 @@
+export const zhHant = {
+  languageName: '繁體中文',
+  appTitle: 'VRChat 影片旋轉',
+  language: '語言',
+  openVideo: '開啟影片',
+  dropHint: '將 MP4 或 MOV 檔案拖放到這裡',
+  privacyNote: '所有處理都在瀏覽器中完成，不會上傳任何內容。只修改旋轉資訊，畫質保持不變。',
+  rotateLeft: '向左旋轉',
+  rotateRight: '向右旋轉',
+  rotation_0: '原始方向',
+  rotation_90: '順時針 90°',
+  rotation_180: '180°',
+  rotation_270: '逆時針 90°',
+  save: '儲存',
+  loadFailed: '無法開啟 {name}。請確認它是 MP4 或 MOV 檔案。',
+};

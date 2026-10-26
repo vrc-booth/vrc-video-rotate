@@ -1,0 +1,16 @@
+export const zhHans = {
+  languageName: '简体中文',
+  appTitle: 'VRChat 视频旋转',
+  language: '语言',
+  openVideo: '打开视频',
+  dropHint: '将 MP4 或 MOV 文件拖放到此处',
+  privacyNote: '所有处理都在浏览器中完成，不会上传任何内容。只修改旋转信息，画质保持不变。',
+  rotateLeft: '向左旋转',
+  rotateRight: '向右旋转',
+  rotation_0: '原始方向',
+  rotation_90: '顺时针 90°',
+  rotation_180: '180°',
+  rotation_270: '逆时针 90°',
+  save: '保存',
+  loadFailed: '无法打开 {name}。请确认它是 MP4 或 MOV 文件。',
+};

@@ -1,0 +1,16 @@
+export const en = {
+  languageName: 'English',
+  appTitle: 'VRChat Video Rotator',
+  language: 'Language',
+  openVideo: 'Open video',
+  dropHint: 'Drop an MP4 or MOV file here',
+  privacyNote: 'Everything runs in your browser. Nothing is uploaded. Only the rotation metadata changes, so quality stays the same.',
+  rotateLeft: 'Rotate left',
+  rotateRight: 'Rotate right',
+  rotation_0: 'Original',
+  rotation_90: '90° clockwise',
+  rotation_180: '180°',
+  rotation_270: '90° counterclockwise',
+  save: 'Save',
+  loadFailed: 'Could not open {name}. Check that it is an MP4 or MOV file.',
+};

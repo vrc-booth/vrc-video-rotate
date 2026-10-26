@@ -1,15 +1,25 @@
 <script>
   import Icon from './Icon.svelte';
+  import { LOCALES, i18n, pickLocale, storeLocale, storedLocale, t, translate } from './i18n.svelte.js';
   import { rotateMp4 } from './lib/rotate.js';
-
-  const ROTATION_LABELS = { 0: '원래 방향', 90: '시계 방향 90°', 180: '180°', 270: '반시계 방향 90°' };
 
   let picker;
   let file = $state(null);
   let degrees = $state(0);
   let result = $state(null);
-  let error = $state('');
+  let failed = $state(false);
   let dragging = $state(false);
+
+  i18n.locale = pickLocale(navigator.languages, storedLocale());
+  $effect(() => {
+    document.documentElement.lang = i18n.locale;
+    document.title = t('appTitle');
+  });
+
+  function chooseLocale(locale) {
+    storeLocale(locale);
+    i18n.locale = locale;
+  }
 
   function open(next) {
     if (!next) return;
@@ -23,17 +33,17 @@
     const rotation = degrees;
     let url;
     let cancelled = false;
-    error = '';
+    failed = false;
     rotateMp4(source, rotation)
       .then((blob) => {
         if (cancelled) return;
         url = URL.createObjectURL(blob);
         result = { url, name: source.name.replace(/(\.\w+)?$/, `_rot${rotation}$1`) };
       })
-      .catch((e) => {
+      .catch(() => {
         if (cancelled) return;
         result = null;
-        error = e.message;
+        failed = true;
       });
     return () => {
       cancelled = true;
@@ -58,8 +68,16 @@
 />
 
 <header class="bar">
-  <h1>VRChat 영상 회전</h1>
-  <button class="secondary" type="button" onclick={() => picker.click()}>영상 열기</button>
+  <h1>{t('appTitle')}</h1>
+  <div class="bar-actions">
+    <button class="secondary" type="button" onclick={() => picker.click()}>{t('openVideo')}</button>
+    <label class="language">
+      <span>{t('language')}</span>
+      <select value={i18n.locale} onchange={(e) => chooseLocale(e.currentTarget.value)}>
+        {#each LOCALES as locale (locale)}<option value={locale}>{translate(locale, 'languageName')}</option>{/each}
+      </select>
+    </label>
+  </div>
 </header>
 <input
   bind:this={picker}
@@ -77,10 +95,10 @@
       <!-- The user's own recording has no caption track to offer. -->
       <!-- svelte-ignore a11y_media_has_caption -->
       <video src={result.url} controls></video>
-    {:else if !file || error}
+    {:else if !file || failed}
       <button class="drop" type="button" onclick={() => picker.click()}>
-        <span>영상 열기</span>
-        <span class="hint">MP4·MOV 파일을 여기로 끌어다 놓아도 됩니다</span>
+        <span>{t('openVideo')}</span>
+        <span class="hint">{t('dropHint')}</span>
       </button>
     {/if}
   </div>
@@ -88,21 +106,21 @@
     <div class="toolbar">
       <p class="caption">
         <span class="caption-name">{file.name}</span>
-        <span class="kind">{ROTATION_LABELS[degrees]}</span>
+        <span class="kind">{t(`rotation_${degrees}`)}</span>
       </p>
       <div class="actions">
-        <button type="button" class="icon" aria-label="왼쪽으로 회전" title="왼쪽으로 회전" onclick={() => (degrees = (degrees + 270) % 360)}>
+        <button type="button" class="icon" aria-label={t('rotateLeft')} title={t('rotateLeft')} onclick={() => (degrees = (degrees + 270) % 360)}>
           <Icon name="rotateLeft" />
         </button>
-        <button type="button" class="icon" aria-label="오른쪽으로 회전" title="오른쪽으로 회전" onclick={() => (degrees = (degrees + 90) % 360)}>
+        <button type="button" class="icon" aria-label={t('rotateRight')} title={t('rotateRight')} onclick={() => (degrees = (degrees + 90) % 360)}>
           <Icon name="rotateRight" />
         </button>
-        <a class="primary" href={result.url} download={result.name}>저장</a>
+        <a class="primary" href={result.url} download={result.name}>{t('save')}</a>
       </div>
     </div>
   {/if}
 </main>
 <div class="status" aria-live="polite">
-  {#if error}<p>{error}</p>{/if}
+  {#if failed}<p>{t('loadFailed', { name: file.name })}</p>{/if}
 </div>
-<footer class="bar"><p>영상은 이 브라우저 안에서만 처리되며 어디로도 전송되지 않습니다. 화질 손실 없이 회전 정보만 바꿉니다.</p></footer>
+<footer class="bar"><p>{t('privacyNote')}</p></footer>

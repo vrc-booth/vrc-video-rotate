@@ -11,10 +11,23 @@
   --focus: #7db8ff;
   --danger: #ff7a7a;
 
-  font-family: "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 14px;
   color: var(--text);
   background: var(--bg);
+}
+
+:root:lang(ko) {
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+:root:lang(ja) {
+  font-family: "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, sans-serif;
+}
+:root:lang(zh-Hans) {
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+:root:lang(zh-Hant) {
+  font-family: "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
 }
 
 * {
@@ -38,9 +51,13 @@ p {
   margin: 0;
 }
 
-button {
+button,
+select {
   font: inherit;
   color: inherit;
+}
+
+button {
   min-height: 44px;
   padding: 0 16px;
   border-radius: 8px;
@@ -104,6 +121,30 @@ footer.bar {
 h1 {
   font-size: 16px;
   font-weight: 700;
+}
+
+.bar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.language {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.language select {
+  min-height: 44px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  color: var(--text);
 }
 
 .editor {

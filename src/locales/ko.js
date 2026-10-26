@@ -1,0 +1,16 @@
+export const ko = {
+  languageName: '한국어',
+  appTitle: 'VRChat 영상 회전',
+  language: '언어',
+  openVideo: '영상 열기',
+  dropHint: 'MP4·MOV 파일을 여기에 끌어다 놓으세요',
+  privacyNote: '모든 처리는 브라우저 안에서 이루어지며, 아무것도 업로드되지 않습니다. 회전 정보만 바꾸므로 화질이 그대로입니다.',
+  rotateLeft: '왼쪽으로 회전',
+  rotateRight: '오른쪽으로 회전',
+  rotation_0: '원래 방향',
+  rotation_90: '시계 방향 90°',
+  rotation_180: '180°',
+  rotation_270: '반시계 방향 90°',
+  save: '저장',
+  loadFailed: '{name}을(를) 열 수 없습니다. MP4·MOV 파일인지 확인하세요.',
+};
